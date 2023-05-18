@@ -18,7 +18,7 @@
                                             <span class="mini-title">Only</span>
                                         <span class="amount">$24.00</span>
                                         </span>
-                                        <a href="shop-left-sidebar.html" class="btn btn-primary text-capitalize">Shop All Devices</a>
+                                        <a href="{% url 'product' %}" class="btn btn-primary text-capitalize">Shop All Devices</a>
                                     </div>
                                 </div>
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 d-flex justify-content-center position-relative align-items-center">
@@ -41,7 +41,7 @@
                                         For Smart Device </h2>
                                         <span class="price">
                                             <span class="mini-title">Only</span>
-                                        <span class="amount">$24.00</span>
+                                        <span class="amount">TK. 24.00</span>
                                         </span>
                                         <a href="shop-left-sidebar.html" class="btn btn-primary text-capitalize">Shop All Devices</a>
                                     </div>
@@ -76,7 +76,7 @@
                             <img src="{% static 'assets/images/banner/6.webp' %}" alt="">
                             <div class="banner-content nth-child-3">
                                 <h3 class="title">Speaker</h3>
-                                <span class="category">From $69.00</span>
+                                <span class="category">From TK. 500</span>
                                 <a href="shop-left-sidebar.html" class="shop-link">Shop Now <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
                             </div>
                         </div>
@@ -86,7 +86,7 @@
                             <img src="{% static 'assets/images/banner/7.webp' %}" alt="">
                             <div class="banner-content nth-child-2">
                                 <h3 class="title">Smartphone</h3>
-                                <span class="category">From $95.00</span>
+                                <span class="category">From TK. 6000</span>
                                 <a href="shop-left-sidebar.html" class="shop-link">Shop Now <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
                             </div>
                         </div>
@@ -120,26 +120,26 @@
                                         <span class="new">{{prod.condition}}</span>
                                     </span>
                                     <div class="thumb">
-                                        <a href="single-product.html" class="image">
+                                        <a href="/products/{{prod.id}}" class="image">
                                             <img src="{{prod.image}}" alt="Product"  style="height: 250px"/>
                                             <img class="hover-image" src="{{prod.image}}" alt="Product"  style="height: 250px"/>
                                         </a>
                                     </div>
                                     <div class="content">
                                         <span class="category"><a href="#">{{prod.categories}}</a></span>
-                                        <h5 class="title"><a href="single-product.html">{{prod.name | truncatewords:10 }}
+                                        <h5 class="title"><a href="/products/{{prod.id}}">{{prod.name | truncatewords:10 }}
                                             </a>
                                         </h5>
                                         <span class="price">
-                                            <span class="new">${{prod.price}}</span>
+                                            <span class="new">TK. {{prod.price}}</span>
                                         </span>
                                     </div>
                                     <div class="actions">
-                                                <button title="Add To Cart" class="action add-to-cart" data-bs-toggle="modal" data-bs-target="#exampleModal-Cart"><i
+                                                <button title="Add To Cart" class="action add-to-cart" data-bs-toggle="modal" data-bs-target="#exampleModal-Cart-{{forloop.counter}}"><i
                                                     class="pe-7s-shopbag"></i></button>
                                                 <button class="action wishlist" title="Wishlist" data-bs-toggle="modal" data-bs-target="#exampleModal-Wishlist"><i
                                                         class="pe-7s-like"></i></button>
-                                                <button class="action quickview" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="pe-7s-look"></i></button>
+                                                <button class="action quickview" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#exampleModal-{{forloop.counter}}"><i class="pe-7s-look"></i></button>
                                                 <button class="action compare" title="Compare" data-bs-toggle="modal" data-bs-target="#exampleModal-Compare"><i
                                                         class="pe-7s-refresh-2"></i></button>
                                             </div>
@@ -163,7 +163,7 @@
                             <div class="banner-content nth-child-3">
                                 <h3 class="title">Smart Watch For <br>
                                         Your Hand</h3>
-                                <span class="category">From $69.00</span>
+                                <span class="category">From TK. 1000.0</span>
                                 <a href="shop-left-sidebar.html" class="shop-link">Shop Now <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
                             </div>
                         </div>
@@ -174,7 +174,7 @@
                             <div class="banner-content nth-child-2">
                                 <h3 class="title">Smart Watch For <br>
                                         Your Hand</h3>
-                                <span class="category">From $95.00</span>
+                                <span class="category">From TK. 1000</span>
                                 <a href="shop-left-sidebar.html" class="shop-link">Shop Now <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
                             </div>
                         </div>
@@ -210,8 +210,8 @@
                                 <div class="prize-content">
                                     <h5 class="title"><a href="single-product.html">Ladies Smart Watch</a></h5>
                                     <span class="price">
-                                <span class="old">$48.50</span>
-                                    <span class="new">$38.50</span>
+                                <span class="old">TK. 1250</span>
+                                    <span class="new">TK. 1050</span>
                                     </span>
                                 </div>
                                 <div class="product-feature">
@@ -236,10 +236,10 @@
                                     <div data-countdown="2021/09/15"></div>
                                 </div>
                                 <div class="prize-content">
-                                    <h5 class="title"><a href="single-product.html">Ladies Smart Watch</a></h5>
+                                    <h5 class="title"><a href="single-product.html">Smart Phone</a></h5>
                                     <span class="price">
-                                <span class="old">$48.50</span>
-                                    <span class="new">$38.50</span>
+                                <span class="old">TK. 15999</span>
+                                    <span class="new">TK. 14999</span>
                                     </span>
                                 </div>
                                 <div class="product-feature">
@@ -266,8 +266,8 @@
                                 <div class="prize-content">
                                     <h5 class="title"><a href="single-product.html">Ladies Smart Watch</a></h5>
                                     <span class="price">
-                                <span class="old">$48.50</span>
-                                    <span class="new">$38.50</span>
+                                <span class="old">TK. 48.50</span>
+                                    <span class="new">TK. 38.50</span>
                                     </span>
                                 </div>
                                 <div class="product-feature">
@@ -294,8 +294,8 @@
                                 <div class="prize-content">
                                     <h5 class="title"><a href="single-product.html">Ladies Smart Watch</a></h5>
                                     <span class="price">
-                                <span class="old">$48.50</span>
-                                    <span class="new">$38.50</span>
+                                <span class="old">TK. 48.50</span>
+                                    <span class="new">TK. 38.50</span>
                                     </span>
                                 </div>
                                 <div class="product-feature">
@@ -342,7 +342,7 @@
                             </div>
                             <div class="feature-content">
                                 <h4 class="title">Free Shipping</h4>
-                                <span class="sub-title">Capped at $39 per order</span>
+                                <span class="sub-title">Capped at TK. 50 per order</span>
                             </div>
                         </div>
                     </div>

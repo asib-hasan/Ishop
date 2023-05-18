@@ -25,14 +25,14 @@
                                 </div>
                                 <!-- Single Wedge End -->
                                 <div class="header-bottom-set dropdown">
-                                    <button class="dropdown-toggle header-action-btn" data-bs-toggle="dropdown">Default <i class="fa fa-angle-down"></i></button>
+                                    <button class="dro  pdown-toggle header-action-btn" data-bs-toggle="dropdown">Default <i class="fa fa-angle-down"></i></button>
                                     <ul class="dropdown-menu dropdown-menu-right">
-                                        <li><a class="dropdown-item" href="#">Name, A to Z</a></li>
-                                        <li><a class="dropdown-item" href="#">Name, Z to A</a></li>
-                                        <li><a class="dropdown-item" href="#">Price, low to high</a></li>
-                                        <li><a class="dropdown-item" href="#">Price, high to low</a></li>
-                                        <li><a class="dropdown-item" href="#">Sort By new</a></li>
-                                        <li><a class="dropdown-item" href="#">Sort By old</a></li>
+                                        <li><a class="dropdown-item" href="/products/{% for i in product %}?ATOZ={{i.id}}{% endfor %}">Name, A to Z</a></li>
+                                        <li><a class="dropdown-item" href="/products/{% for i in product %}?ZTOA={{i.id}}{% endfor %}">Name, Z to A</a></li>
+                                        <li><a class="dropdown-item" href="/products/{% for i in product %}?PRICE_LOWTOHIGH={{i.id}}{% endfor %}">Price, low to high</a></li>
+                                        <li><a class="dropdown-item" href="/products/{% for i in product %}?PRICE_HIGHTOLOW={{i.id}}{% endfor %}">Price, high to low</a></li>
+                                        <li><a class="dropdown-item" href="/products/{% for i in product %}?NEW_PRODUCT={{i.id}}{% endfor %}">Sort By new</a></li>
+                                        <li><a class="dropdown-item" href="/products/{% for i in product %}?OLD_PRODUCT={{i.id}}{% endfor %}">Sort By old</a></li>
                                     </ul>
                                 </div>
                                 <!-- Single Wedge Start -->
@@ -67,11 +67,11 @@
                                                                 </a>
                                                             </h5>
                                                             <span class="price">
-                                                            <span class="new">${{prod.price}}</span>
+                                                            <span class="new">TK. {{prod.price}}</span>
                                                             </span>
                                                         </div>
                                                         <div class="actions">
-                                                            <button title="Add To Cart" class="action add-to-cart" data-bs-toggle="modal" data-bs-target="#exampleModal-Cart"><i
+                                                            <button title="Add To Cart" class="action add-to-cart" data-bs-toggle="modal" data-bs-target="#exampleModal-Cart-{{forloop.counter}}"><i
                                                                 class="pe-7s-shopbag"></i></button>
                                                             <button class="action wishlist" title="Wishlist" data-bs-toggle="modal" data-bs-target="#exampleModal-Wishlist"><i
                                                                     class="pe-7s-like"></i></button>
@@ -110,7 +110,7 @@
                                                             </div>
                                                             <div class="box-inner">
                                                                 <span class="price">
-                                                                <span class="new">${{prod.price}}</span>
+                                                                <span class="new">TK. {{prod.price}}</span>
                                                                 </span>
                                                                 <div class="actions">
                                                                     <button title="Add To Cart" class="action add-to-cart" data-bs-toggle="modal" data-bs-target="#exampleModal-Cart"><i
@@ -158,9 +158,9 @@
                                 <h4 class="sidebar-title">Top Categories</h4>
                                 <div class="sidebar-widget-category">
                                     <ul>
-                                        <li><a href="#" class="selected m-0"> All </a></li>
+                                        <li><a href="/products/" class="selected m-0"> All Products </a></li>
                                         {% for cat in categories %}
-                                        <li><a href="#" class="selected m-0"> {{cat.name}} </a></li>
+                                        <li><a href="/products/?categories={{cat.id}}" class="selected m-0"> {{cat.name}} </a></li>
                                         {% endfor %}
                                     </ul>
                                 </div>
@@ -170,9 +170,10 @@
                                 <h4 class="sidebar-title">Price Filter</h4>
                                 <div class="price-filter">
                                     <div class="price-slider-amount">
-                                        <input type="text" id="amount" class="p-0 h-auto lh-1" name="price" placeholder="Add Your Price" />
+                                        {% for f in filter_price %}
+                                        <li><a href="/products/?filter_price={{f.id}}" class="selected m-0"> {{f.price}} </a></li>
+                                        {% endfor %}
                                     </div>
-                                    <div id="slider-range"></div>
                                 </div>
                             </div>
                             <!-- Sidebar single item -->
@@ -180,20 +181,9 @@
                                 <h4 class="sidebar-title">Color</h4>
                                 <div class="sidebar-widget-color">
                                     <ul class="d-flex flex-wrap">
-                                        <li><a href="#" class="color-1"></a></li>
-                                        <li><a href="#" class="color-2"></a></li>
-                                        <li><a href="#" class="color-3"></a></li>
-                                        <li><a href="#" class="color-4"></a></li>
-                                        <li><a href="#" class="color-5"></a></li>
-                                        <li><a href="#" class="color-6"></a></li>
-                                        <li><a href="#" class="color-7"></a></li>
-                                        <li><a href="#" class="color-8"></a></li>
-                                        <li><a href="#" class="color-9"></a></li>
-                                        <li><a href="#" class="color-10"></a></li>
-                                        <li><a href="#" class="color-11"></a></li>
-                                        <li><a href="#" class="color-12"></a></li>
-                                        <li><a href="#" class="color-13"></a></li>
-                                        <li><a href="#" class="color-14"></a></li>
+                                        {% for col in color %}
+                                        <li><a href="/products/?color={{col.id}}" style="background-color:{{col.code}}"></a></li>
+                                        {% endfor %}
                                     </ul>
                                 </div>
                             </div>
@@ -220,11 +210,10 @@
                                 <h4 class="sidebar-title">Brands</h4>
                                 <div class="sidebar-widget-brand">
                                     <ul>
-                                        <li><a href="#" class="selected m-0"> Lakmeeto<span>(65)</span> </a></li>
-                                        <li><a href="#" class=""> Beautifill <span>(14)</span></a></li>
-                                        <li><a href="#" class=""> Made In GD <span>(21)</span></a></li>
-                                        <li><a href="#" class=""> Pecifico <span>(16)</span></a></li>
-                                        <li><a href="#" class=""> Xlovgtir<span>(12)</span></a></li>
+                                        <li><a href="/products/" class="selected m-0"> All Brand<span></span> </a></li>
+                                        {% for i in brand %}
+                                        <li><a href="/products/?brand={{i.id}}" class=""> {{i.name}} <span></span></a></li>
+                                        {% endfor %}
                                     </ul>
                                 </div>
                             </div>
